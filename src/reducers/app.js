@@ -2,16 +2,17 @@ import * as types from "../actions";
 
 // 기본값
 const initialState = {
-  isTest: true
+  datas: []
 };
 
 // 리듀서
 const app = (state = initialState, action) => {
+  console.log("app의 리듀서: ", state, action);
   switch (action.type) {
     case types.APP_ACTION_TEST:
       return {
         ...state,
-        isTest: action.data
+        datas: action.data
       };
     default:
       return state;

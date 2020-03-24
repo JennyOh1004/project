@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import AstronomyCard from "./AstronomyCard";
-// import AstronomyCard from "./AstronomyCard";
 
 class Astronomy extends Component {
   constructor(props) {
