@@ -2,18 +2,16 @@ import * as types from "../actions";
 
 // 기본값
 const initialState = {
-  datas: [
-    {
-      title: true,
-      url: true
-    }
-  ]
+  app: {
+    datas: []
+  }
 };
 
 // 리듀서
 const app = (state = initialState, action) => {
+  console.log("app의 리듀서: ", state, action);
   switch (action.type) {
-    case "FETCH_DATA":
+    case types.FETCH_DATA:
       return {
         ...state,
         datas: action.data
@@ -24,14 +22,3 @@ const app = (state = initialState, action) => {
 };
 
 export default app;
-
-// export default function(state = {}, action) {
-//   switch (action.type) {
-//     case "FETCH_DATA":
-//       const newState = Object.assign({}, ...state, action.data);
-//       return newState;
-
-//     default:
-//       return state;
-//   }
-// }

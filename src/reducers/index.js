@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import app from "./app"; //reducer 끼리 연결
+import app from "./app";
 
 const reducers = combineReducers({
-  datas: app
+  app
 });
 
 export default reducers;

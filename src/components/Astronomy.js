@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import AstronomyCard from "./AstronomyCard";
 import { connect } from "react-redux";
-// import AstronomyCard from "./AstronomyCard";
+import fetchData from "../actions/fetch_data";
 
 class Astronomy extends Component {
   // constructor(props) {
@@ -10,46 +10,54 @@ class Astronomy extends Component {
   //   this.state = {
   //     datas: []
   //   };
-  //이걸 reducers 에 넣어주기
-  //}
+  // }
 
   componentDidMount() {
-    // console.log("componentWillMount!!");
-    // fetch(
-    //   "https://api.nasa.gov/planetary/apod?api_key=bHXdeJkOdPSycslSNZRPptAtkbV9ZJTwxA40m1x2"
-    // )
-    //   .then(response => response.json())
-    //   .then(data =>
-    //     this.setState({
-    //       datas: data
-    //     })
-    //   );
-    // .catch(error => console.log(err));
-  }
-
-  componentWillMount() {
-    console.log("야", this.props.datas);
+    const { action } = this.props;
+    console.log("datas", this.props.datas);
+    console.log("componentDidMount!!");
+    fetch(
+      "https://api.nasa.gov/planetary/apod?api_key=bHXdeJkOdPSycslSNZRPptAtkbV9ZJTwxA40m1x2"
+    )
+      .then(response => {
+        console.log("첫번째 then", response);
+        return response.json();
+      })
+      .then(data => {
+        console.log("두번쨰 then", data);
+        console.log("제목", data.title);
+        // action
+      })
+      .catch(error => console.log(err));
   }
 
   render() {
-    // const { datas } = this.state;
+    const { datas } = this.props;
 
-    // console.log("잘되니?", datas);
+    console.log("props!!", this.props);
+    console.log("데이타 잘 넘어옵니까?", datas);
     return (
       <div>
-        <AstronomyCard data={datas} />
+        <AstronomyCard />
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
+  console.log("state tree", state);
+  // let state = {
+  //   app: {
+  //     datas: []
+  //   }
+  // }
   return {
-    datas: state.datas
+    datas: state.app.datas
   };
 }
-
-//connect react with redux
-//mapStateToProps
-//mapDispatchToProps
-export default connect(mapStateToProps)(Astronomy);
+function mapDispatchToProps(dispatch) {
+  return {
+    action: (type, data) => dispatch({ type, data })
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Astronomy);
