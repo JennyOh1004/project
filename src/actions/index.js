@@ -1,5 +1,5 @@
 export const APP_ACTION_TEST = "APP_ACTION_TEST";
-//액션 이름을 만들때는
-//const 를 사옹하여 레퍼런스에 문자열을 담는다.
-//앞에 도메인을 추가하는 방식으로 서로다른 모듈에서
-//동일한 액션 이름을 가질수 있게 된다.
+
+//Action 의 종류들을 선언한다.
+//앞에 export 를 붙임으로서, 나중에 이것들을 불러올때,
+//import * as types fron './actions' 를 할수 있다.
