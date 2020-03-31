@@ -1,16 +1,17 @@
 import React from "react";
 
-const AstronomyCard = ({ datas }) => {
+const AstronomyCard = ({ data }) => {
+  console.log("card data", data);
   return (
     <>
-      {/* <h1>{datas.title}</h1>
-      <a href={datas.hdurl}>
-        <img src={datas.url} alt={datas.title}></img>
+      {/* <h1>{data.title}</h1>
+      <a href={data.hdurl}>
+        <img src={data.url} alt={data.title}></img>
       </a>
       <h3>
-        {datas.date} {datas.copyright}
+        {data.date} {data.copyright}
       </h3>
-      <p>{datas.explanation}</p> */}
+      <p>{data.explanation}</p> */}
     </>
   );
 };

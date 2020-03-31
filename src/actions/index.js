@@ -1,2 +1,7 @@
-export const APP_ACTION_TEST = "APP_ACTION_TEST";
-export const FETCH_DATA = "FETCH_DATA";
+import * as types from "./actionTypes";
+
+//action creator
+//액션 생성자 선언
+export const APP_ACTION_TEST = () => ({
+  type: types.APP_ACTION_TEST
+});

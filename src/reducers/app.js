@@ -1,9 +1,18 @@
-import * as types from "../actions";
+import * as types from "../actions/actionTypes";
 
 // 기본값
 const initialState = {
   app: {
-    datas: []
+    datas: {
+      title: "Astronomy",
+      hdurl:
+        "https://apod.nasa.gov/apod/image/2003/SaturnColors_CassiniSchmidt_1000.jpg",
+      url:
+        "https://api.nasa.gov/planetary/apod?api_key=bHXdeJkOdPSycslSNZRPptAtkbV9ZJTwxA40m1x2",
+      explanation: "",
+      copyright: null,
+      date: "2020-03-30"
+    }
   }
 };
 
@@ -11,7 +20,7 @@ const initialState = {
 const app = (state = initialState, action) => {
   console.log("app의 리듀서: ", state, action);
   switch (action.type) {
-    case types.FETCH_DATA:
+    case types.APP_ACTION_TEST:
       return {
         ...state,
         datas: action.data
