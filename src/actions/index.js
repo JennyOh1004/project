@@ -1,7 +1,5 @@
-import * as types from "./actionTypes";
+//action types
 
-//action creator
-//액션 생성자 선언
-export const APP_ACTION_TEST = () => ({
-  type: types.APP_ACTION_TEST
-});
+export const APP_ACTION_TEST = "APP_ACTION_TEST";
+export const APP_ASTRONOMY_DATA_REQUEST = "APP_ASTRONOMY_DATA_REQUEST";
+export const SPACE_ASTRONOMY_DATA_REQUEST = "SPACE_ASTRONOMY_DATA_REQUEST";

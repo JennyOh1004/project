@@ -12,6 +12,7 @@ const AstronomyCard = ({ data }) => {
         {data.date} {data.copyright}
       </h3>
       <p>{data.explanation}</p> */}
+      <h1>홈화면이 없어서 임시로 AstronomyCard를 보여줍니다.</h1>
     </>
   );
 };

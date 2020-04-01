@@ -1,20 +1,21 @@
 import React, { Component } from "react";
 import AstronomyCard from "./AstronomyCard";
 import { connect } from "react-redux";
-import * as actions from "../actions";
+import * as types from "../actions";
 
 class Astronomy extends Component {
-  // constructor(props) {
-  //   super(props);
-
-  //   this.state = {
-  //     datas: []
-  //   };
-  // }
+  constructor(props) {
+    super(props);
+  }
 
   componentDidMount() {
     const { action } = this.props;
     console.log("componentDidMount!!", action);
+    this.getAstronomyData();
+  }
+
+  getAstronomyData() {
+    const { action } = this.props;
     fetch(
       "https://api.nasa.gov/planetary/apod?api_key=bHXdeJkOdPSycslSNZRPptAtkbV9ZJTwxA40m1x2"
     )
@@ -27,26 +28,23 @@ class Astronomy extends Component {
         console.log("제목", data.title);
 
         // action
-      })
-      .catch(error => console.log(err));
+        action(types.APP_ASTRONOMY_DATA_REQUEST, {
+          title: data.title,
+          img: data.hdurl,
+          date: data.date
+        });
+      });
   }
-
   render() {
-    const { datas } = this.props;
-
-    console.log("props!!", this.props);
-    console.log("데이타 잘 넘어옵니까?", this.props.datas);
+    const { astronomy } = this.props;
+    const { title, img, date } = astronomy;
+    console.log(this.props);
     return (
       <div>
         {/* <AstronomyCard /> */}
-        <h1>{datas.title}</h1>
-        <a href={datas.url}>
-          <img src={datas.hdurl} alt={datas.title}></img>
-        </a>
-        <h3>
-          {datas.date} {datas.copyright}
-        </h3>
-        <p>{datas.explanation}</p>
+        <h1>{title}</h1>
+        <img src={img} alt={title}></img>
+        <h3>{date}</h3>
       </div>
     );
   }
@@ -54,18 +52,8 @@ class Astronomy extends Component {
 
 //store 안의 state 값을 Props 로 연결해준다.
 function mapStateToProps(state) {
-  const { datas } = state;
-  console.log("state tree1", state);
-  console.log("state tree2", state.app.app.datas.title);
-  console.log("state tree2", state.app.app.datas.hdurl);
-  // let state = {
-  //   app: {
-  //     datas: []
-  //   }
-  // }
   return {
-    // datas: state.app.data
-    datas: state.app.app.datas
+    astronomy: state.app.astronomy
   };
 }
 
@@ -77,10 +65,6 @@ function mapDispatchToProps(dispatch) {
     action: (type, data) => dispatch({ type, data })
   };
 }
-
-const connectToStore = connect(mapStateToProps, mapDispatchToProps);
-
-const ConnectedComponent = connectToStore(Astronomy);
 
 //컴포넌트를 어플리케이션의 데이터 레이어와 묶는 역할.
 export default connect(mapStateToProps, mapDispatchToProps)(Astronomy);
